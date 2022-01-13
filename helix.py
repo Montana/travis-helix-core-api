@@ -1,5 +1,5 @@
 import P4 
-import daterime 
+import dateime 
 import travis-ci
 from P4 import P4, P4Exception
 
