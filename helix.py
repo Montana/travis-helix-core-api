@@ -5,6 +5,12 @@ from P4 import P4, P4Exception
 
 p4 = P4()
 
+class MyResolver(P4.Resolver):
+    def resolve(self, mergeData):
+        if not mergeData.merge_hint == "e":
+            return mergeData.merge_hint
+        else:
+            return "s"  # Skip the resolve. 
 try:
     p4.connect()
     p4.exception_level = 2  # Need Travis Infrastructure API keys.
