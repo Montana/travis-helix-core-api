@@ -37,6 +37,17 @@ if ( p4.is_ignored( "/home/montana-travis/workspace/config.txt" ):
   print "Ignored."
 else:
   print "Not ignored."
+    
+p4 = P4(e)
+
+try:
+  p4.connect()
+  for r in p4.run_filelog( "index.html" )[0].revisions:
+    for i in r.integrations:
+    
+except P4Exception:
+  for e in p4.errors:
+    print e
 
 change = p4.run_change("-o")[0]
     change["Description"] = "Autosubmitted changelist"
@@ -52,7 +63,51 @@ try:
     atime = datetime.utcfromtimestamp( int( client[ "Access" ] ) )
     if ( atime + timedelta( 365 ) ) < now :
       p4.travis_ci( '-f', client[ "client" ] )
+    
+p4 = P4()
+p4.password = "myoldpass"
+
+try:
+  p4.connect()
+  p4.run_password( "travispass", "mynewpass" )
 
 except P4Exception:
   for e in p4.errors:
     print e
+try:
+  p4.connect()
+  
+    = p4.fetch_client()
+  client[ "Montana" ] = p4.user
+  p4.save_client( client )
+
+except P4Exception:
+  for e in p4.errors:
+    print e
+    
+class MyP4(P4.P4):
+    def run(self, *args, **kargs):
+        P4.P4.run(self, *args, **kargs)
+
+p4 = P4()
+p4.connect()
+change = p4.fetch_change()
+
+myfiles = ['/Desktop/techie/Montana/123.c', '//depot/some/path/file1.h']
+change._description 
+change._files = myfiles 
+p4.run_submit(change)
+    
+fetch a client spec in raw format, no formatting:
+specform = p4.run( 'client', '-o', tagged=False )[0]
+
+client1 = p4.parse_client( specform )
+
+print( client1.comment )
+
+client1.comment += 
+
+formatted1 = p4.format_client( client1 )
+
+client2 = p4.parse_spec( 'client', specform )
+formatted2 = p4.format_spec( 'client', specform )
