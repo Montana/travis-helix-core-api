@@ -36,8 +36,6 @@ change = p4.run_change("-o")[0]
     change["Description"] = "Autosubmitted changelist"
     p4.input = change
     p4.run_submit("-i")
-from P4 import P4, P4Exception
-from datetime import datetime, timedelta
 
 now = datetime.now()
 p4 = P4()
