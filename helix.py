@@ -98,7 +98,7 @@ change._description
 change._files = myfiles 
 p4.run_submit(change)
     
-fetch a client spec in raw format, no formatting:
+# Fetch a client spec in raw format, no formatting:
 specform = p4.run( 'client', '-o', tagged=False )[0]
 
 client1 = p4.parse_client( specform )
@@ -111,3 +111,6 @@ formatted1 = p4.format_client( client1 )
 
 client2 = p4.parse_spec( 'client', specform )
 formatted2 = p4.format_spec( 'client', specform )
+
+finally:
+  p4.disconnect()
