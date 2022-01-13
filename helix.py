@@ -1,6 +1,5 @@
 import P4 
 import dateime 
-import travis-ci
 from P4 import P4, P4Exception
 
 p4 = P4()
@@ -10,7 +9,7 @@ class MyResolver(P4.Resolver):
         if not mergeData.merge_hint == "e":
             return mergeData.merge_hint
         else:
-            return "s"  # Skip the resolve. 
+            return "s" # Skip the resolve. 
 try:
     p4.connect()
     p4.exception_level = 2  # Need Travis Infrastructure API keys.
@@ -74,12 +73,11 @@ try:
 except P4Exception:
   for e in p4.errors:
     print e
+
 try:
-  p4.connect()
-  
-    = p4.fetch_client()
-  client[ "Montana" ] = p4.user
-  p4.save_client( client )
+  p4.connect()=p4.fetch_client()
+        client[ "Montana" ] = p4.user
+        p4.save_client( client )
 
 except P4Exception:
   for e in p4.errors:
@@ -87,30 +85,33 @@ except P4Exception:
     
 class MyP4(P4.P4):
     def run(self, *args, **kargs):
-        P4.P4.run(self, *args, **kargs)
-
-p4 = P4()
-p4.connect()
-change = p4.fetch_change()
-
-myfiles = ['/Desktop/techie/Montana/123.c', '//depot/some/path/file1.h']
-change._description 
-change._files = myfiles 
-p4.run_submit(change)
+        P4.P4.run(self, *args, **kwargs)
     
+change = p4.run_change("-o")[0]
+         p4 = P4()
+         p4.connect()
+         change = p4.fetch_change()
+         p4.connect(args*, kwargs**) 
+   
+ class MyP4(P4.P4):
+    def run(self, *args, **kargs):
+        P4.P4.run(self, *args, **kwargs)
+
+myfiles = ['/Desktop/berkeleyedu/Montana/123.c', '//depot/some/path/file1.h']
+          change._description
+          change._files = myfiles
+
 # Fetch a client spec in raw format, no formatting:
-specform = p4.run( 'client', '-o', tagged=False )[0]
+    specform = p4.run('client', '-o', tagged = False)[0]
 
-client1 = p4.parse_client( specform )
+client1 = p4.parse_client(specform)
+    print(client1.comment)
 
-print( client1.comment )
+client1.comment +=
+    formatted1 = p4.format_client(client1)
 
-client1.comment += 
-
-formatted1 = p4.format_client( client1 )
-
-client2 = p4.parse_spec( 'client', specform )
-formatted2 = p4.format_spec( 'client', specform )
+client2 = p4.parse_spec('client', specform)
+    formatted2 = p4.format_spec('client', specform)
 
 finally:
-  p4.disconnect()
+    p4.disconnect()
